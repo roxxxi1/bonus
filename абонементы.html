@@ -1,0 +1,573 @@
+<!DOCTYPE html> 
+<!-- Объявление типа документа - HTML5 -->
+
+<html lang="ru"> 
+<!-- Корневой элемент HTML-документа с указанием языка (русский) -->
+
+<head> 
+  <link rel="icon" href="лого.png">
+<!-- Секция метаданных и ресурсов документа -->
+  <meta charset="UTF-8" /> 
+  <!-- Установка кодировки UTF-8 для поддержки русских символов -->
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+  <!-- Настройка адаптивного отображения на мобильных устройствах -->
+  
+  <title>Абонементы - Тренажёрный зал Бонус</title> 
+  <!-- Заголовок страницы (отображается во вкладке браузера) -->
+  
+  <style> 
+    /* Сброс стандартных стилей браузера */
+    * {
+      margin: 0; /* Убирает внешние отступы у всех элементов */
+      padding: 0; /* Убирает внутренние отступы у всех элементов */
+      box-sizing: border-box; /* Изменяет модель расчета размеров элементов */
+      font-family: 'Arial', sans-serif; /* Устанавливает шрифт по умолчанию */
+    }
+
+    /* Стили для всего тела документа */
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                  url('сним.jpg'); /* Градиент и фоновое изображение */
+      background-size: cover; /* Растягивает фон на всю область */
+      background-attachment: fixed; /* Фиксирует фон при прокрутке */
+      color: #fff; /* Белый цвет текста */
+      line-height: 1.6; /* Межстрочный интервал */
+      min-height: 100vh; /* Минимальная высота на весь экран */
+    }
+
+    /* Класс-контейнер для центрирования контента */
+    .container {
+      max-width: 1200px; /* Максимальная ширина контента */
+      margin: 0 auto; /* Центрирование по горизонтали */
+      padding: 0 20px; /* Отступы по бокам */
+    }
+
+    /* Стили для шапки сайта */
+    header {
+      background-color: #595959; /* Цвет фона шапки */
+      padding: 10px 0; /* Внутренние отступы сверху/снизу */
+      position: fixed; /* Фиксированное позиционирование */
+      width: 100%; /* Ширина на всю страницу */
+      top: 0; /* Прикрепление к верху страницы */
+      z-index: 1000; /* Управление слоями (высший приоритет) */
+      border-bottom: 3px solid #000; /* Нижняя граница */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Тень под шапкой */
+    }
+
+    /* Внутренний контейнер шапки */
+    .header-inner {
+      display: flex; /* Использование flex-раскладки */
+      align-items: center; /* Вертикальное выравнивание элементов */
+      justify-content: space-between; /* Распределение пространства между элементами */
+      flex-wrap: wrap; /* Разрешение переноса элементов */
+    }
+
+    /* Стили для логотипа */
+    .logo {
+      height: 50px; /* Фиксированная высота логотипа */
+    }
+
+    /* Стили для заголовка в шапке */
+    .header-title {
+      flex: 1; /* Занимает все доступное пространство */
+      text-align: center; /* Выравнивание текста по центру */
+      font-size: 22px; /* Размер шрифта */
+      font-weight: bold; /* Жирное начертание */
+      color: #fff; /* Белый цвет текста */
+      text-transform: uppercase; /* Преобразование в верхний регистр */
+      letter-spacing: 1px; /* Расстояние между буквами */
+    }
+
+    /* Стили для контактной информации в шапке */
+    .header-contact {
+      text-align: right; /* Выравнивание текста по правому краю */
+      font-size: 13px; /* Размер шрифта */
+      color: #ddd; /* Светло-серый цвет текста */
+    }
+
+    /* Стили для навигационного меню */
+    nav {
+      background-color: rgba(95, 95, 95, 0.95); /* Полупрозрачный фон */
+      padding: 10px 0; /* Внутренние отступы сверху/снизу */
+      margin-top: 70px; /* Отступ от шапки */
+      border-bottom: 3px solid #000; /* Нижняя граница */
+      top: 70px; /* Позиция от верха */
+      z-index: 999; /* Приоритет слоя */
+      position: sticky;
+    }
+
+    /* Стили для списка в навигации */
+    nav ul {
+      display: flex; /* Flex-раскладка для горизонтального меню */
+      flex-wrap: wrap; /* Разрешение переноса элементов */
+      justify-content: center; /* Центрирование элементов по горизонтали */
+      list-style: none; /* Убирает маркеры списка */
+      gap: 20px; /* Расстояние между пунктами меню */
+      padding: 0 10px; /* Внутренние отступы слева/справа */
+    }
+
+    /* Стили для ссылок в навигации */
+    nav a {
+      color: #fff; /* Белый цвет текста */
+      text-decoration: none; /* Убирает подчеркивание */
+      font-weight: bold; /* Жирное начертание */
+      font-size: 16px; /* Размер шрифта */
+      transition: all 0.3s; /* Плавные анимации изменений */
+      padding: 8px 15px; /* Внутренние отступы */
+      border-radius: 4px; /* Скругление углов */
+    }
+
+    /* Стили для ссылок при наведении */
+    nav a:hover {
+      background: #FF0D00; /* Темно-красный фон */
+      color: #fff; /* Белый цвет текста */
+    }
+
+    /* Стили для активной ссылки */
+    nav a.active {
+      background: #FF0D00; /* Темно-красный фон */
+      color: #fff; /* Белый цвет текста */
+    }
+
+    /* Стили для секции с абонементами */
+    .pricing-section {
+      padding: 150px 0 80px; /* Отступы сверху и снизу */
+      text-align: center; /* Выравнивание текста по центру */
+    }
+
+    /* Стили для заголовка секции */
+    .section-title {
+      color: #FF0D00; /* Цвет заголовка */
+      font-size: 48px; /* Размер шрифта */
+      text-transform: uppercase; /* Преобразование в верхний регистр */
+      letter-spacing: 2px; /* Расстояние между буквами */
+      margin-bottom: 50px; /* Отступ снизу */
+      position: relative; /* Относительное позиционирование */
+    }
+
+    /* Стили для вводного текста */
+    .pricing-intro {
+      max-width: 800px; /* Максимальная ширина */
+      margin: 0 auto 50px; /* Центрирование с отступом */
+      font-size: 20px; /* Размер шрифта */
+      color: #ddd; /* Светло-серый цвет текста */
+    }
+
+    /* Сетка для карточек с ценами */
+    .pricing-container {
+      display: grid; /* Использование CSS Grid */
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Адаптивные колонки */
+      gap: 30px; /* Расстояние между элементами */
+      margin-top: 50px; /* Отступ сверху */
+    }
+
+    /* Стили для карточки с ценами */
+    .pricing-card {
+      background: rgba(30, 30, 30, 0.8); /* Полупрозрачный фон */
+      border-radius: 8px; /* Скругление углов */
+      padding: 30px; /* Внутренние отступы */
+      border: 2px solid #333; /* Граница */
+      transition: all 0.4s ease; /* Плавная анимация */
+      position: relative; /* Относительное позиционирование */
+      overflow: hidden; /* Скрытие выходящего за границы контента */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Тень */
+    }
+
+    /* Эффект при наведении на карточку */
+    .pricing-card:hover {
+      transform: translateY(-10px); /* Смещение вверх */
+      border-color: #FF0D00; /* Изменение цвета границы */
+      box-shadow: 0 15px 35px rgba(112, 5, 0, 0.3); /* Усиление тени */
+    }
+
+    /* Стили для заголовка в карточке */
+    .pricing-card h3 {
+      color: #FF0D00; /* Цвет заголовка */
+      font-size: 32px; /* Размер шрифта */
+      margin-bottom: 30px; /* Отступ снизу */
+      position: relative; /* Относительное позиционирование */
+    }
+
+    /* Декоративная линия под заголовком */
+    .pricing-card h3::after {
+      content: ''; /* Пустое содержимое */
+      display: block; /* Блочный элемент */
+      width: 60px; /* Ширина линии */
+      height: 2px; /* Толщина линии */
+      background: #FF0D00; /* Цвет линии */
+      margin: 15px auto; /* Центрирование с отступами */
+    }
+
+    /* Стили для элемента цены */
+    .price-item {
+      display: flex; /* Flex-раскладка */
+      justify-content: space-between; /* Распределение пространства между элементами */
+      padding: 15px 0; /* Внутренние отступы сверху/снизу */
+      border-bottom: 1px solid #444; /* Нижняя граница */
+      font-size: 18px; /* Размер шрифта */
+    }
+
+    /* Убрать границу у последнего элемента */
+    .price-item:last-child {
+      border-bottom: none; /* Без границы */
+    }
+
+    /* Стили для названия услуги */
+    .price-label {
+      text-align: left; /* Выравнивание текста по левому краю */
+      flex: 1; /* Занимает доступное пространство */
+      color: #ddd; /* Светло-серый цвет текста */
+    }
+
+    /* Стили для значения цены */
+    .price-value {
+      color: #fff; /* Белый цвет текста */
+      font-weight: bold; /* Жирное начертание */
+      min-width: 150px; /* Минимальная ширина */
+      text-align: right; /* Выравнивание текста по правому краю */
+    }
+
+    /* Стили для примечания к цене */
+    .price-note {
+      font-size: 16px; /* Размер шрифта */
+      color: #bbb; /* Серый цвет текста */
+      font-style: italic; /* Курсивное начертание */
+      margin-top: 5px; /* Отступ сверху */
+    }
+
+    /* Стили для выделенного текста */
+    .highlight {
+      color: #FF0D00; /* Темно-красный цвет */
+      font-weight: bold; /* Жирное начертание */
+    }
+
+    /* Стили для блока с примечанием */
+    .disclaimer {
+      background: rgba(40, 40, 40, 0.9); /* Полупрозрачный фон */
+      padding: 25px; /* Внутренние отступы */
+      border-radius: 8px; /* Скругление углов */
+      margin-top: 60px; /* Отступ сверху */
+      text-align: left; /* Выравнивание текста по левому краю */
+      max-width: 900px; /* Максимальная ширина */
+      margin: 60px auto 0; /* Центрирование с отступами */
+    }
+
+    /* Стили для заголовка в примечании */
+    .disclaimer h4 {
+      color: #FF0D00; /* Темно-красный цвет */
+      margin-bottom: 15px; /* Отступ снизу */
+      font-size: 22px; /* Размер шрифта */
+    }
+
+    /* Стили для текста в примечании */
+    .disclaimer p {
+      margin-bottom: 15px; /* Отступ снизу */
+      font-size: 16px; /* Размер шрифта */
+      line-height: 1.6; /* Межстрочный интервал */
+    }
+
+    /* Стили для подвала сайта */
+    footer {
+      background-color: #595959; /* Цвет фона */
+      padding: 5px 0; /* Внутренние отступы */
+      border-top: 3px solid #000; /* Верхняя граница */
+    }
+
+    /* Контейнер для элементов подвала */
+    .footer-container {
+      display: flex; /* Flex-раскладка */
+      justify-content: space-between; /* Распределение пространства между элементами */
+      align-items: center; /* Вертикальное выравнивание */
+      flex-wrap: wrap; /* Разрешение переноса элементов */
+    }
+
+    /* Стили для элементов подвала */
+    .footer-item {
+      color: #ddd; /* Цвет текста */
+      font-size: 16px; /* Размер шрифта */
+      white-space: nowrap; /* Запрет переноса текста */
+    }
+
+    /* Стили для копирайта */
+    .copyright {
+      color: #ccc; /* Цвет текста */
+      font-size: 14px; /* Размер шрифта */
+    }
+
+    /* Стили для ссылки на VK */
+    .vk-link {
+      display: inline-block; /* Блочно-строчный элемент */
+      transition: all 0.3s ease; /* Плавные анимации */
+    }
+    
+    /* Стили для логотипа VK в подвале */
+    .footer-logo {
+      height: 35px; /* Высота логотипа */
+      opacity: 0.8; /* Полупрозрачность */
+      transition: all 0.3s ease; /* Плавные анимации */
+    }
+    
+    /* Эффекты при наведении на логотип VK */
+    .vk-link:hover .footer-logo {
+      opacity: 1; /* Полная видимость */
+      transform: scale(1.2); /* Увеличение размера */
+    }
+
+    /* Медиа-запрос для адаптации под мобильные устройства */
+    @media (max-width: 768px) {
+      /* Адаптация шапки */
+      .header-inner {
+        flex-direction: column; /* Вертикальное расположение элементов */
+        align-items: center; /* Центрирование по горизонтали */
+        text-align: center; /* Выравнивание текста по центру */
+      }
+
+      .header-contact {
+        text-align: center; /* Выравнивание текста по центру */
+        margin-top: 8px; /* Отступ сверху */
+      }
+
+      .header-title {
+        margin-top: 8px; /* Отступ сверху */
+        font-size: 20px; /* Уменьшение размера шрифта */
+      }
+      
+      /* Адаптация навигации */
+      nav {
+        margin-top: 60px; /* Уменьшение отступа от шапки */
+        top: 60px; /* Позиция от верха */
+      }
+      
+      nav ul {
+        gap: 10px; /* Уменьшение расстояния между пунктами */
+      }
+      
+      nav a {
+        font-size: 14px; /* Уменьшение размера шрифта */
+        padding: 6px 10px; /* Уменьшение отступов */
+      }
+      
+      /* Адаптация подвала */
+      .footer-container {
+        flex-direction: column; /* Вертикальное расположение элементов */
+        gap: 15px; /* Расстояние между элементами */
+        text-align: center; /* Выравнивание текста по центру */
+      }
+      
+      /* Адаптация заголовка секции */
+      .section-title {
+        font-size: 36px; /* Уменьшение размера шрифта */
+      }
+      
+      /* Адаптация сетки карточек */
+      .pricing-container {
+        grid-template-columns: 1fr; /* Одна колонка */
+      }
+      
+      /* Адаптация вводного текста */
+      .pricing-intro {
+        font-size: 18px; /* Уменьшение размера шрифта */
+        padding: 0 15px; /* Отступы по бокам */
+      }
+      
+      /* Адаптация карточек */
+      .pricing-card {
+        padding: 20px; /* Уменьшение отступов */
+      }
+    }
+  </style>
+</head>
+
+<body> 
+<!-- Тело документа (видимая часть страницы) -->
+
+  <!-- Шапка сайта -->
+  <header>
+    <div class="container"> 
+    <!-- Контейнер для центрирования контента -->
+      <div class="header-inner"> 
+      <!-- Внутренний блок шапки -->
+        <img src="лого3.png" alt="Логотип" class="logo" /> 
+        <!-- Изображение логотипа -->
+        <div class="header-title">Тренажёрный зал Бонус</div> 
+        <!-- Название зала -->
+        <div class="header-contact"> 
+        <!-- Блок контактной информации -->
+          <div>8(912)00-177-12</div> <!-- Номер телефона -->
+          <div>Сыктывкар, Ленина, 108</div> <!-- Адрес -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Навигационное меню -->
+  <nav>
+    <div class="container">
+      <ul> 
+      <!-- Список пунктов меню -->
+        <li><a href="сайт курсач.html">О клубе</a></li> 
+        <!-- Пункт меню -->
+        <li><a href="наша команда.html">Наша команда</a></li> 
+        <!-- Пункт меню -->
+        <li><a href="абонементы.html" class="active">Абонементы</a></li> 
+        <!-- Активный пункт меню -->
+        <li><a href="контакты.html">Контакты</a></li> 
+        <!-- Пункт меню -->
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Секция с абонементами -->
+  <section class="pricing-section">
+    <div class="container">
+      <h2 class="section-title">Абонементы</h2> 
+      <!-- Заголовок секции -->
+      
+      <div class="pricing-intro">
+        В стоимость абонементов и гостевых посещений клуба входит пользование всеми тренажёрами и инвентарём зала.
+      </div> 
+      <!-- Вводный текст -->
+      
+      <div class="pricing-container"> 
+      <!-- Контейнер для карточек с ценами -->
+        <!-- Карточка гостевого визита -->
+        <div class="pricing-card">
+          <h3> Гостевой визит</h3> 
+          <!-- Заголовок карточки -->
+          <div class="price-item">
+            <span class="price-label">До 15.00 в будни, в выходные без ограничений</span> 
+            <!-- Название услуги -->
+            <span class="price-value">280 ₽</span> 
+            <!-- Цена -->
+          </div>
+          <div class="price-item">
+            <span class="price-label">После 15.00</span>
+            <span class="price-value">380 ₽</span>
+          </div>
+        </div>
+        
+        <!-- Карточка безлимитных абонементов -->
+        <div class="pricing-card">
+          <h3> Безлимитные</h3>
+          <div class="price-item">
+            <span class="price-label">Дневной (1 месяц)</span>
+            <span class="price-value">2500 ₽</span>
+          </div>
+          <div class="price-item">
+            <span class="price-label">Любое время (1 месяц)</span>
+            <span class="price-value">3200 ₽</span>
+          </div>
+          <div class="price-item">
+            <span class="price-label">3 месяца</span>
+            <span class="price-value">8000 ₽</span>
+          </div>
+          <div class="price-item">
+            <span class="price-label">6 месяцев</span>
+            <span class="price-value">13800 ₽</span>
+          </div>
+        </div>
+        
+        <!-- Карточка занятий с тренером -->
+        <div class="pricing-card">
+          <h3> С тренером</h3>
+          <div class="price-item">
+            <span class="price-label">1 занятие</span>
+            <span class="price-value">1150 ₽</span>
+          </div>
+          <div class="price-item">
+            <span class="price-label">6 занятий</span>
+            <span class="price-value">6300 ₽ <span class="price-note">(1050 ₽/занятие)</span></span> 
+            <!-- Цена с примечанием -->
+          </div>
+          <div class="price-item">
+            <span class="price-label">8 занятий</span>
+            <span class="price-value">8000 ₽ <span class="price-note">(1000 ₽/занятие)</span></span>
+          </div>
+          <div class="price-item">
+            <span class="price-label">10 занятий</span>
+            <span class="price-value">9500 ₽ <span class="price-note">(950 ₽/занятие)</span></span>
+          </div>
+        </div>
+        
+        <!-- Карточка дуэта с тренером -->
+        <div class="pricing-card">
+          <h3> Дуэт с тренером</h3>
+          <div class="price-item">
+            <span class="price-label">1 занятие</span>
+            <span class="price-value">1500 ₽</span>
+          </div>
+          <div class="price-item">
+            <span class="price-label">4 занятия</span>
+            <span class="price-value">5600 ₽ <span class="price-note">(1400 ₽/занятие)</span></span>
+          </div>
+          <div class="price-item">
+            <span class="price-label">6 занятий</span>
+            <span class="price-value">8100 ₽ <span class="price-note">(1350 ₽/занятие)</span></span>
+          </div>
+          <div class="price-item">
+            <span class="price-label">10 занятий</span>
+            <span class="price-value">13000 ₽ <span class="price-note">(1300 ₽/занятие)</span></span>
+          </div>
+        </div>
+        
+        <!-- Карточка для лиц до 17 лет -->
+        <div class="pricing-card">
+          <h3> Для лиц до 17 лет</h3>
+          <div class="price-item">
+            <span class="price-label">1 занятие с тренером</span>
+            <span class="price-value">1000 ₽</span>
+          </div>
+          <div class="price-item">
+            <span class="price-label">6 занятий с тренером</span>
+            <span class="price-value">5400 ₽ <span class="price-note">(900 ₽/занятие)</span></span>
+          </div>
+          <div class="price-item">
+            <span class="price-label highlight">* Только в присутствии родителей</span> 
+            <!-- Выделенное примечание -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Блок с важной информацией -->
+      <div class="disclaimer">
+        <h4>‼ Важная информация</h4> 
+        <!-- Заголовок примечания -->
+        <p>В стоимость занятий с тренером входят его услуги, посещение зала и пользование всем оборудованием, в том числе кардиозоной. <span class="highlight">Никаких доплат!</span></p>
+        <p>При возврате абонемента возврат денежных средств осуществляется согласно п. 4.4 и 4.5 договора публичной оферты. По окончании срока действия абонемента денежные средства за неиспользованный абонемент не возвращаются.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Подвал сайта -->
+  <footer>
+    <div class="container">
+      <div class="footer-container"> 
+      <!-- Контейнер для элементов подвала -->
+        <!-- Элемент с адресом -->
+        <div class="footer-item">
+          <span>Сыктывкар, Ленина, 108</span>
+        </div>
+        
+        <!-- Элемент с телефоном -->
+        <div class="footer-item">
+          <span>8(912)00-177-12</span>
+        </div>
+        
+        <!-- Элемент с копирайтом -->
+        <div class="footer-item">
+          <span class="copyright">Copyright © 2025</span>
+        </div>
+        
+        <!-- Элемент со ссылкой на VK -->
+        <div class="footer-item">
+            <a href="https://vk.com/bonus_fitnes?from=groups" target="_blank" class="vk-link">
+                <img src="вк.png" alt="VK" class="footer-logo" /> 
+                <!-- Иконка VK -->
+              </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

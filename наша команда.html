@@ -1,0 +1,859 @@
+<!DOCTYPE html> <!-- Объявление типа документа - HTML5 -->
+<html lang="ru"> <!-- Корневой элемент документа с указанием языка (русский) -->
+<head>
+  <link rel="icon" href="лого.png">
+  <!-- Мета-информация -->
+  <meta charset="UTF-8" /> <!-- Кодировка документа (UTF-8 для поддержки русских символов) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Адаптивность для мобильных устройств -->
+  <title>Тренажёрный зал Бонус</title> <!-- Заголовок страницы в браузере -->
+  
+  <style>
+    /* Глобальные стили */
+    * {
+      /* Сброс стандартных отступов браузера */
+      margin: 0;
+      padding: 0;
+      /* Модель расчета размеров: padding и border включаются в общую ширину/высоту */
+      box-sizing: border-box;
+      /* Основной шрифт для всех элементов */
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Стили для всего тела документа */
+    body {
+      /* Градиент поверх фонового изображения */
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                  url('изо.jpg');
+      /* Растягивание фона на всю область */
+      background-size: cover;
+      /* Фиксация фона при прокрутке */
+      background-attachment: fixed;
+      /* Цвет основного текста */
+      color: #fff;
+      /* Межстрочный интервал */
+      line-height: 1.6;
+      /* Минимальная высота = высоте видимой области */
+      min-height: 100vh;
+    }
+
+    /* Контейнер для центрирования контента */
+    .container {
+      /* Максимальная ширина контента */
+      max-width: 1200px;
+      /* Центрирование по горизонтали */
+      margin: 0 auto;
+      /* Отступы безопасности по бокам */
+      padding: 0 20px;
+    }
+
+    /* Шапка сайта */
+    header {
+      /* Цвет фона с прозрачностью */
+      background-color: rgba(95, 95, 95, 0.95);
+      /* Внутренние отступы сверху/снизу */
+      padding: 10px 0;
+      /* Фиксированное позиционирование */
+      position: fixed;
+      /* Ширина 100% экрана */
+      width: 100%;
+      /* Позиция вверху страницы */
+      top: 0;
+      /* Высокий z-index для перекрытия контента */
+      z-index: 1000;
+      /* Нижняя граница */
+      border-bottom: 3px solid #000;
+      /* Тень для эффекта "приподнятости" */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Внутренняя обертка шапки */
+    .header-inner {
+      /* Гибкий контейнер */
+      display: flex;
+      /* Выравнивание по вертикали */
+      align-items: center;
+      /* Распределение пространства между элементами */
+      justify-content: space-between;
+      /* Разрешение переноса элементов */
+      flex-wrap: wrap;
+    }
+
+    /* Стили логотипа */
+    .logo {
+      /* Фиксированная высота */
+      height: 50px;
+    }
+
+    /* Заголовок в шапке */
+    .header-title {
+      /* Занимает доступное пространство */
+      flex: 1;
+      /* Выравнивание по центру */
+      text-align: center;
+      /* Размер шрифта */
+      font-size: 22px;
+      /* Жирное начертание */
+      font-weight: bold;
+      /* Цвет текста */
+      color: #fff;
+      /* Все буквы заглавные */
+      text-transform: uppercase;
+      /* Расстояние между буквами */
+      letter-spacing: 1px;
+    }
+
+    /* Блок контактов */
+    .header-contact {
+      /* Выравнивание по правому краю */
+      text-align: right;
+      /* Размер шрифта */
+      font-size: 13px;
+      /* Цвет текста */
+      color: #ddd;
+    }
+
+    /* Навигационное меню */
+    nav {
+      /* Цвет фона с прозрачностью */
+      background-color: rgba(95, 95, 95, 0.95);
+      /* Внутренние отступы сверху/снизу */
+      padding: 10px 0;
+      /* Отступ сверху */
+      margin-top: 70px;
+      /* Нижняя граница */
+      border-bottom: 3px solid #000;
+      /* Липкое позиционирование */
+      position: sticky;
+      /* Позиция прилипания */
+      top: 70px;
+      /* Уровень слоя */
+      z-index: 999;
+      position: sticky;
+    }
+  
+    /* Список навигации */
+    nav ul {
+      /* Гибкий контейнер */
+      display: flex;
+      /* Разрешение переноса элементов */
+      flex-wrap: wrap;
+      /* Выравнивание по центру */
+      justify-content: center;
+      /* Удаление маркеров списка */
+      list-style: none;
+      /* Расстояние между элементами */
+      gap: 20px;
+      /* Внутренние отступы слева/справа */
+      padding: 0 10px;
+    }
+  
+    /* Ссылки в меню */
+    nav a {
+      /* Цвет текста */
+      color: #fff;
+      /* Удаление подчеркивания */
+      text-decoration: none;
+      /* Жирное начертание */
+      font-weight: bold;
+      /* Размер шрифта */
+      font-size: 16px;
+      /* Плавные переходы для анимации */
+      transition: all 0.3s;
+      /* Внутренние отступы */
+      padding: 8px 15px;
+      /* Скругление углов */
+      border-radius: 4px;
+    }
+  
+    /* Эффект при наведении на ссылку */
+    nav a:hover {
+      /* Изменение фона */
+      background: #FF0D00;
+      /* Изменение цвета текста */
+      color: #fff;
+    }
+  
+    /* Стиль активной ссылки */
+    nav a.active {
+      /* Цвет фона */
+      background: #FF0D00;
+      /* Цвет текста */
+      color: #fff;
+    }
+
+    /* Заголовки разделов */
+    .section-title {
+      /* Выравнивание по центру */
+      text-align: center;
+      /* Цвет текста */
+      color: #FF0D00;
+      /* Внешние отступы сверху/снизу */
+      margin: 100px 0 50px;
+      /* Размер шрифта */
+      font-size: 36px;
+      /* Все буквы заглавные */
+      text-transform: uppercase;
+      /* Расстояние между буквами */
+      letter-spacing: 2px;
+    }
+    
+    /* Секция с тренерами */
+    .trainers-section {
+      /* Внутренние отступы сверху/снизу */
+      padding: 40px 0 80px;
+    }
+    
+    /* Контейнер для карточек тренеров */
+    .trainers-container {
+      /* Отображение в виде сетки */
+      display: grid;
+      /* Адаптивное количество колонок */
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      /* Расстояние между элементами */
+      gap: 40px;
+    }
+    
+    /* Карточка тренера */
+    .trainer-card {
+      /* Цвет фона с прозрачностью */
+      background: rgba(0, 0, 0, 0.8);
+      /* Внутренние отступы */
+      padding: 25px;
+      /* Скругление углов */
+      border-radius: 8px;
+      /* Тень */
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      /* Плавные переходы для анимации */
+      transition: all 0.4s ease;
+      /* Выравнивание текста по центру */
+      text-align: center;
+      /* Граница */
+      border: 2px solid #333;
+      /* Скрытие выходящих за границы элементов */
+      overflow: hidden;
+    }
+    
+    /* Эффект при наведении на карточку */
+    .trainer-card:hover {
+      /* Сдвиг вверх */
+      transform: translateY(-10px);
+      /* Изменение тени */
+      box-shadow: 0 15px 35px rgba(112, 5, 0, 0.5);
+      /* Изменение цвета границы */
+      border-color: #FF0D00;
+    }
+    
+    /* Фото тренера */
+    .trainer-photo {
+      /* Ширина изображения */
+      width: 240px;
+      /* Высота изображения */
+      height: 240px;
+      /* Скругление углов */
+      border-radius: 8px;
+      /* Режим отображения изображения */
+      object-fit: cover;
+      /* Граница */
+      border: 4px solid #FF0D00;
+      /* Внешние отступы */
+      margin: 0 auto 25px;
+      /* Блочное отображение */
+      display: block;
+      /* Тень */
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+      /* Плавные переходы для анимации */
+      transition: all 0.3s;
+    }
+    
+    /* Эффект при наведении на фото */
+    .trainer-card:hover .trainer-photo {
+      /* Увеличение изображения */
+      transform: scale(1.05);
+      /* Изменение тени */
+      box-shadow: 0 12px 20px rgba(112, 5, 0, 0.6);
+    }
+    
+    /* Имя тренера */
+    .trainer-name {
+      /* Цвет текста */
+      color: #FF0D00;
+      /* Размер шрифта */
+      font-size: 26px;
+      /* Отступ снизу */
+      margin-bottom: 12px;
+      /* Жирное начертание */
+      font-weight: 800;
+      /* Расстояние между буквами */
+      letter-spacing: 1px;
+    }
+    
+    /* Специализация тренера */
+    .trainer-specialty {
+      /* Цвет текста */
+      color: #ddd;
+      /* Размер шрифта */
+      font-size: 18px;
+      /* Отступ снизу */
+      margin-bottom: 15px;
+      /* Жирное начертание */
+      font-weight: bold;
+      /* Минимальная высота для выравнивания */
+      min-height: 60px;
+      /* Гибкий контейнер */
+      display: flex;
+      /* Выравнивание по вертикали */
+      align-items: center;
+      /* Выравнивание по горизонтали */
+      justify-content: center;
+    }
+    
+    /* Описание тренера */
+    .trainer-description {
+      /* Отступ снизу */
+      margin-bottom: 25px;
+      /* Размер шрифта */
+      font-size: 16px;
+      /* Межстрочный интервал */
+      line-height: 1.6;
+      /* Цвет текста */
+      color: #ccc;
+      /* Внутренние отступы слева/справа */
+      padding: 0 15px;
+    }
+    
+    /* Блок с ценами */
+    .trainer-pricing {
+      /* Цвет фона с прозрачностью */
+      background: rgba(30, 30, 30, 0.8);
+      /* Внутренние отступы */
+      padding: 20px;
+      /* Скругление углов */
+      border-radius: 8px;
+      /* Внешние отступы сверху/снизу */
+      margin: 20px 0;
+      /* Граница */
+      border: 1px solid #444;
+    }
+    
+    /* Элемент цены */
+    .price-item {
+      /* Гибкий контейнер */
+      display: flex;
+      /* Распределение пространства между элементами */
+      justify-content: space-between;
+      /* Внутренние отступы сверху/снизу */
+      padding: 12px 0;
+      /* Нижняя граница */
+      border-bottom: 1px solid #333;
+    }
+    
+    /* Последний элемент цены */
+    .price-item:last-child {
+      /* Удаление границы */
+      border-bottom: none;
+    }
+    
+    /* Название услуги */
+    .price-label {
+      /* Цвет текста */
+      color: #ddd;
+      /* Выравнивание по левому краю */
+      text-align: left;
+      /* Занимает доступное пространство */
+      flex: 1;
+    }
+    
+    /* Значение цены */
+    .price-value {
+      /* Цвет текста */
+      color: #fff;
+      /* Жирное начертание */
+      font-weight: bold;
+      /* Размер шрифта */
+      font-size: 18px;
+      /* Выравнивание по правому краю */
+      text-align: right;
+      /* Минимальная ширина для выравнивания */
+      min-width: 120px;
+    }
+    
+    /* Кнопка записи */
+    .contact-button {
+      /* Строчно-блочное отображение */
+      display: inline-block;
+      /* Градиентный фон */
+      background: linear-gradient(135deg, #FF0D00, #8a0707);
+      /* Цвет текста */
+      color: white;
+      /* Удаление подчеркивания */
+      text-decoration: none;
+      /* Внутренние отступы */
+      padding: 14px 30px;
+      /* Скругление углов */
+      border-radius: 8px;
+      /* Жирное начертание */
+      font-weight: bold;
+      /* Плавные переходы для анимации */
+      transition: all 0.3s ease;
+      /* Тень */
+      box-shadow: 0 6px 15px rgba(112, 5, 0, 0.4);
+      /* Отступ сверху */
+      margin-top: 15px;
+      /* Граница */
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      /* Ширина 100% родителя */
+      width: 100%;
+      /* Выравнивание текста по центру */
+      text-align: center;
+      /* Размер шрифта */
+      font-size: 18px;
+      /* Расстояние между буквами */
+      letter-spacing: 1px;
+      /* Все буквы заглавные */
+      text-transform: uppercase;
+      /* Относительное позиционирование */
+      position: relative;
+      /* Скрытие выходящих за границы элементов */
+      overflow: hidden;
+    }
+    
+    /* Эффект при наведении на кнопку */
+    .contact-button:hover {
+      /* Сдвиг вверх */
+      transform: translateY(-5px);
+      /* Изменение тени */
+      box-shadow: 0 10px 25px rgba(112, 5, 0, 0.7);
+      /* Изменение градиента */
+      background: linear-gradient(135deg, #8a0707, #FF0D00);
+    }
+    
+    /* Псевдоэлемент для анимации "блика" */
+    .contact-button:after {
+      /* Обязательное свойство для псевдоэлементов */
+      content: '';
+      /* Абсолютное позиционирование */
+      position: absolute;
+      /* Позиционирование сверху */
+      top: -50%;
+      /* Позиционирование слева */
+      left: -60%;
+      /* Ширина элемента */
+      width: 20px;
+      /* Высота элемента */
+      height: 200%;
+      /* Цвет фона */
+      background: rgba(255, 255, 255, 0.3);
+      /* Поворот элемента */
+      transform: rotate(30deg);
+      /* Плавные переходы */
+      transition: all 0.6s;
+    }
+    
+    /* Анимация "блика" при наведении */
+    .contact-button:hover:after {
+      /* Позиционирование справа */
+      left: 110%;
+    }
+
+    /* Подвал сайта */
+    footer {
+      /* Цвет фона с прозрачностью */
+      background-color: rgba(95, 95, 95, 0.95);
+      /* Внутренние отступы сверху/снизу */
+      padding: 5px 0;
+      /* Верхняя граница */
+      border-top: 3px solid #000;
+      /* Отступ сверху */
+      margin-top: 60px;
+    }
+
+    /* Контейнер подвала */
+    .footer-container {
+      /* Гибкий контейнер */
+      display: flex;
+      /* Распределение пространства между элементами */
+      justify-content: space-between;
+      /* Выравнивание по вертикали */
+      align-items: center;
+      /* Разрешение переноса элементов */
+      flex-wrap: wrap;
+    }
+
+    /* Группа элементов подвала */
+    .footer-content {
+      /* Гибкий контейнер */
+      display: flex;
+      /* Выравнивание по вертикали */
+      align-items: center;
+      /* Расстояние между элементами */
+      gap: 30px;
+      /* Разрешение переноса элементов */
+      flex-wrap: wrap;
+    }
+
+    /* Элемент подвала */
+    .footer-item {
+      /* Цвет текста */
+      color: #ddd;
+      /* Размер шрифта */
+      font-size: 16px;
+      /* Запрет переноса текста */
+      white-space: nowrap;
+    }
+
+    /* Копирайт */
+    .copyright {
+      /* Цвет текста */
+      color: #ccc;
+      /* Размер шрифта */
+      font-size: 14px;
+    }
+
+    /* Ссылка VK */
+    .vk-link {
+      /* Строчно-блочное отображение */
+      display: inline-block;
+      /* Тип курсора */
+      cursor: pointer;
+      /* Плавные переходы */
+      transition: all 0.3s ease;
+    }
+    
+    /* Логотип VK в подвале */
+    .footer-logo {
+      /* Фиксированная высота */
+      height: 40px;
+      /* Прозрачность */
+      opacity: 0.8;
+      /* Плавные переходы */
+      transition: all 0.3s ease;
+    }
+    
+    /* Эффект при наведении на VK */
+    .vk-link:hover .footer-logo {
+      /* Полная непрозрачность */
+      opacity: 1;
+      /* Увеличение размера */
+      transform: scale(1.2);
+    }
+    
+    /* Эффект при клике на VK */
+    .vk-link:active .footer-logo {
+      /* Уменьшение размера */
+      transform: scale(0.9);
+    }
+
+    /* Адаптивность для мобильных устройств */
+    @media (max-width: 768px) {
+      /* Изменение шапки на мобильных */
+      .header-inner {
+        /* Вертикальное расположение элементов */
+        flex-direction: column;
+      }
+
+      /* Центрирование контактов */
+      .header-contact {
+        text-align: center;
+        margin-top: 8px;
+      }
+
+      /* Настройки заголовка */
+      .header-title {
+        margin-top: 8px;
+        font-size: 20px;
+      }
+      
+      /* Настройки навигации */
+      nav {
+        margin-top: 60px;
+        top: 60px;
+      }
+      
+      /* Уменьшение расстояния между пунктами меню */
+      nav ul {
+        gap: 10px;
+      }
+      
+      /* Настройки ссылок меню */
+      nav a {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
+      
+      /* Изменение подвала на мобильных */
+      .footer-container {
+        /* Вертикальное расположение элементов */
+        flex-direction: column;
+        /* Расстояние между элементами */
+        gap: 15px;
+        /* Выравнивание по центру */
+        text-align: center;
+      }
+      
+      /* Вертикальное расположение элементов подвала */
+      .footer-content {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+      
+      /* Настройки заголовка секции */
+      .section-title {
+        font-size: 28px;
+        margin-top: 80px;
+      }
+      
+      /* Одна колонка карточек на мобильных */
+      .trainers-container {
+        grid-template-columns: 1fr;
+      }
+      
+      /* Уменьшение размера фото */
+      .trainer-photo {
+        width: 200px;
+        height: 200px;
+      }
+      
+      /* Уменьшение отступов карточки */
+      .trainer-card {
+        padding: 20px;
+      }
+      
+      /* Уменьшение минимальной ширины цены */
+      .price-value {
+        min-width: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка сайта -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <!-- Логотип -->
+        <img src="лого3.png" alt="Логотип" class="logo" />
+        <!-- Заголовок компании -->
+        <div class="header-title">Тренажёрный зал Бонус</div>
+        <!-- Контактная информация -->
+        <div class="header-contact">
+          <div>8(912)00-177-12</div>
+          <div>Сыктывкар, Ленина, 108</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Навигационное меню -->
+  <nav>
+    <div class="container">
+      <ul>
+        <!-- Пункты меню -->
+        <li><a href="сайт курсач.html">О клубе</a></li>
+        <li><a href="наша команда.html" class="active">Наша команда</a></li>
+        <li><a href="абонементы.html">Абонементы</a></li>
+        <li><a href="контакты.html">Контакты</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Секция с тренерами -->
+  <section class="trainers-section">
+    <div class="container">
+      <!-- Заголовок секции -->
+      <h2 class="section-title">Наши профессиональные тренеры</h2>
+      
+      <!-- Контейнер для карточек тренеров -->
+      <div class="trainers-container">
+        <!-- Карточка тренера 1 -->
+        <div class="trainer-card">
+          <!-- Фото тренера -->
+          <img src="тренер 1.jpg" alt="Александр Колесник" class="trainer-photo">
+          <!-- Имя тренера -->
+          <h3 class="trainer-name">Александр Колесник</h3>
+          <!-- Специализация -->
+          <div class="trainer-specialty">Дипломированный инструктор тренажёрного зала</div>
+          <!-- Описание -->
+          <p class="trainer-description"> Ведёт индивидуальные занятия с теми, кто намерен быть здоровее и красивее, независимо от возраста и физической подготовки</p>
+          
+          <!-- Блок с ценами -->
+          <div class="trainer-pricing">
+            <div class="price-item">
+              <span class="price-label">Для взрослых персональное занятие с тренером </span>
+              <span class="price-value">1150 ₽</span>
+            </div>
+            <div class="price-item">
+              <span class="price-label">6 персональных занятий с тренером</span>
+              <span class="price-value">6300 ₽</span>
+            </div>
+            <div class="price-item">
+              <span class="price-label">8 персональных занятий с тренером</span>
+              <span class="price-value">8000 ₽</span>
+            </div>
+          </div>
+          
+          <!-- Кнопка записи -->
+          <a href="https://vk.com/market/product/personalnoe-zanyatie-s-trenerom-ot-145775840-9239109" class="contact-button">Записаться на тренировку</a>
+        </div>
+        
+        <!-- Карточка тренера 2 -->
+        <div class="trainer-card">
+          <img src="тренер2.jpg" alt="Алексей Юдин" class="trainer-photo">
+          <h3 class="trainer-name">Алексей Юдин</h3>
+          <div class="trainer-specialty">Сертифицированный инструктор по массажу и кинезиофитнесу</div>
+          <p class="trainer-description">Задача инструктора по кинезиофитнесу — настроить физиологически правильное движение мышц (а значит, безопасное и эффективное).</p>
+          
+          <div class="trainer-pricing">
+            <div class="price-item">
+              <span class="price-label">Для взрослых персональное занятие с тренером</span>
+              <span class="price-value">1150 ₽</span>
+            </div>
+            <div class="price-item">
+              <span class="price-label">6 персональных занятий с тренером</span>
+              <span class="price-value">6300 ₽</span>
+            </div>
+            <div class="price-item">
+              <span class="price-label">8 персональных занятий с тренером</span>
+              <span class="price-value">8000 ₽</span>
+            </div>
+          </div>
+          
+          <a href="https://vk.com/market/product/personalnoe-zanyatie-s-trenerom-ot-145775840-7797275" class="contact-button">Записаться на тренировку</a>
+        </div>
+        
+        <!-- Карточка тренера 3 -->
+        <div class="trainer-card">
+          <img src="тренер3.jpg" alt="Александр Овсянников" class="trainer-photo">
+          <h3 class="trainer-name">Александр Овсянников</h3>
+          <div class="trainer-specialty">Дипломированный тренер</div>
+          <p class="trainer-description">Ведёт тренировки с подростками и взрослыми, независимо от пола, возраста и физподготовки</p>
+          
+          <div class="trainer-pricing">
+            <div class="price-item">
+              <span class="price-label">Для взрослых персональное занятие с тренером</span>
+              <span class="price-value">1150 ₽</span>
+            </div>
+            <div class="price-item">
+              <span class="price-label">6 персональных занятий с тренером</span>
+              <span class="price-value">6300 ₽</span>
+            </div>
+            <div class="price-item">
+              <span class="price-label">8 персональных занятий с тренером</span>
+              <span class="price-value">8000 ₽</span>
+            </div>
+          </div>
+          
+          <a href="https://vk.com/market/product/personalnoe-zanyatie-s-trenerom-ot-145775840-11103296" class="contact-button">Записаться на тренировку</a>
+        </div>
+
+        <!-- Карточка тренера 4 -->
+        <div class="trainer-card">
+            <img src="тренер4.jpg" alt="Тая Полухина" class="trainer-photo">
+            <h3 class="trainer-name">Тая Полухина</h3>
+            <div class="trainer-specialty">Дипломированный тренер по индивидуальным программам</div>
+            <p class="trainer-description">Ведёт индивидуальные занятия с теми, кто намерен быть здоровее и красивее, независимо от возраста и физической подготовки</p>
+            
+            <div class="trainer-pricing">
+              <div class="price-item">
+                <span class="price-label">Для взрослых персональное занятие с тренером</span>
+                <span class="price-value">1150 ₽</span>
+              </div>
+              <div class="price-item">
+                <span class="price-label">6 персональных занятий с тренером</span>
+                <span class="price-value">6300 ₽</span>
+              </div>
+              <div class="price-item">
+                <span class="price-label">8 персональных занятий с тренером</span>
+                <span class="price-value">8000 ₽</span>
+              </div>
+            </div>
+            
+            <a href="https://vk.com/market/product/personalnoe-zanyatie-v-trenazhyornom-zale-ot-145775840-7643062" class="contact-button">Записаться на тренировку</a>
+          </div>
+
+        <!-- Карточка тренера 5 -->
+          <div class="trainer-card">
+            <img src="тренер7.jpg" alt="Татьяна Чиркова" class="trainer-photo">
+            <h3 class="trainer-name">Татьяна Чиркова</h3>
+            <div class="trainer-specialty">Дипломированный инструктор тренажёрного зала</div>
+            <p class="trainer-description">Персональные тренировки для лиц любого возраста для роста или укрепления мышц</p>
+            
+            <div class="trainer-pricing">
+              <div class="price-item">
+                <span class="price-label">Для взрослых персональное занятие с тренером</span>
+                <span class="price-value">1150 ₽</span>
+              </div>
+              <div class="price-item">
+                <span class="price-label">6 персональных занятий с тренером</span>
+                <span class="price-value">6300 ₽</span>
+              </div>
+              <div class="price-item">
+                <span class="price-label">8 персональных занятий с тренером</span>
+                <span class="price-value">8000 ₽</span>
+              </div>
+            </div>
+            
+            <a href="https://vk.com/market/product/personalnoe-zanyatie-s-trenerom-ot-145775840-8574780" class="contact-button">Записаться на тренировку</a>
+          </div>
+
+        <!-- Карточка тренера 6 -->
+          <div class="trainer-card">
+            <img src="тренер6.jpg" alt="Елена Чувьюрова" class="trainer-photo">
+            <h3 class="trainer-name">Елена Чувьюрова</h3>
+            <div class="trainer-specialty">Сертифицированный инструктор по йоге</div>
+            <p class="trainer-description">Стретчинг стимулирует кровоток и циркуляцию лимфы, расслабляет мышцы и снимает боли, возникшие из-за стресса</p>
+            
+            <div class="trainer-pricing">
+              <div class="price-item">
+                <span class="price-label">Для взрослых персональное занятие с тренером</span>
+                <span class="price-value">1150 ₽</span>
+              </div>
+              <div class="price-item">
+                <span class="price-label">6 персональных занятий с тренером</span>
+                <span class="price-value">6300 ₽</span>
+              </div>
+              <div class="price-item">
+                <span class="price-label">8 персональных занятий с тренером</span>
+                <span class="price-value">8000 ₽</span>
+              </div>
+            </div>
+            
+            <a href="https://vk.com/market/product/stretching-s-elenoy-chuvyurovoy-145775840-11035917" class="contact-button">Записаться на тренировку</a>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Подвал сайта -->
+  <footer>
+    <div class="container">
+      <div class="footer-container"> 
+      <!-- Контейнер для элементов подвала -->
+        <!-- Элемент с адресом -->
+        <div class="footer-item">
+          <span>Сыктывкар, Ленина, 108</span>
+        </div>
+        
+        <!-- Элемент с телефоном -->
+        <div class="footer-item">
+          <span>8(912)00-177-12</span>
+        </div>
+        
+        <!-- Элемент с копирайтом -->
+        <div class="footer-item">
+          <span class="copyright">Copyright © 2025</span>
+        </div>
+        
+        <!-- Элемент со ссылкой на VK -->
+        <div class="footer-item">
+            <a href="https://vk.com/bonus_fitnes?from=groups" target="_blank" class="vk-link">
+                <img src="вк.png" alt="VK" class="footer-logo" /> 
+                <!-- Иконка VK -->
+              </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

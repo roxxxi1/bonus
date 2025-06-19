@@ -1,0 +1,538 @@
+<!DOCTYPE html> 
+<!-- Объявление типа документа - HTML5 -->
+
+<html lang="ru"> 
+<!-- Корневой элемент HTML-документа с указанием языка (русский) -->
+
+<head> 
+  <link rel="icon" href="лого.png">
+<!-- Секция метаданных и ресурсов документа -->
+  <meta charset="UTF-8" /> 
+  <!-- Установка кодировки UTF-8 для поддержки русских символов -->
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+  <!-- Настройка адаптивного отображения на мобильных устройствах -->
+  
+  <title>Тренажёрный зал Бонус</title> 
+  <!-- Заголовок страницы (отображается во вкладке браузера) -->
+  
+  <style> 
+    /* Сброс стандартных стилей браузера */
+    * {
+      margin: 0; /* Убирает внешние отступы у всех элементов */
+      padding: 0; /* Убирает внутренние отступы у всех элементов */
+      box-sizing: border-box; /* Изменяет модель расчета размеров элементов */
+      font-family: 'Arial', sans-serif; /* Устанавливает шрифт по умолчанию */
+    }
+
+    /* Стили для всего тела документа */
+    body {
+      background-color: #111; /* Темный фон страницы */
+      color: #fff; /* Белый цвет текста */
+      line-height: 1.6; /* Межстрочный интервал */
+    }
+
+    /* Класс-контейнер для центрирования контента */
+    .container {
+      max-width: 1200px; /* Максимальная ширина контента */
+      margin: 0 auto; /* Центрирование по горизонтали */
+      padding: 0 20px; /* Отступы по бокам */
+    }
+
+    /* Стили для шапки сайта */
+    header {
+      background-color: #595959; /* Цвет фона шапки */
+      padding: 10px 0; /* Внутренние отступы сверху/снизу */
+      position: fixed; /* Фиксированное позиционирование */
+      width: 100%; /* Ширина на всю страницу */
+      top: 0; /* Прикрепление к верху страницы */
+      z-index: 1000; /* Управление слоями (высший приоритет) */
+      border-bottom: 3px solid #000; /* Нижняя граница */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Тень под шапкой */
+    }
+
+    /* Внутренний контейнер шапки */
+    .header-inner {
+      display: flex; /* Использование flex-раскладки */
+      align-items: center; /* Вертикальное выравнивание элементов */
+      justify-content: space-between; /* Распределение пространства между элементами */
+      flex-wrap: wrap; /* Разрешение переноса элементов */
+    }
+
+    /* Стили для логотипа */
+    .logo {
+      height: 50px; /* Фиксированная высота логотипа */
+    }
+
+    /* Стили для заголовка в шапке */
+    .header-title {
+      flex: 1; /* Занимает все доступное пространство */
+      text-align: center; /* Выравнивание текста по центру */
+      font-size: 22px; /* Размер шрифта */
+      font-weight: bold; /* Жирное начертание */
+      color: #fff; /* Белый цвет текста */
+      text-transform: uppercase; /* Преобразование в верхний регистр */
+      letter-spacing: 1px; /* Расстояние между буквами */
+    }
+
+    /* Стили для контактной информации в шапке */
+    .header-contact {
+      text-align: right; /* Выравнивание текста по правому краю */
+      font-size: 13px; /* Размер шрифта */
+      color: #ddd; /* Светло-серый цвет текста */
+    }
+
+    /* Стили для навигационного меню */
+    nav {
+      background-color: rgba(95, 95, 95, 0.95); /* Полупрозрачный фон */
+      padding: 10px 0; /* Внутренние отступы сверху/снизу */
+      margin-top: 70px; /* Отступ от шапки */
+      border-bottom: 3px solid #000; /* Нижняя граница */
+      top: 70px; /* Позиция от верха */
+      z-index: 999; /* Приоритет слоя */
+      position: sticky;
+    }
+
+    /* Стили для списка в навигации */
+    nav ul {
+      display: flex; /* Flex-раскладка для горизонтального меню */
+      flex-wrap: wrap; /* Разрешение переноса элементов */
+      justify-content: center; /* Центрирование элементов по горизонтали */
+      list-style: none; /* Убирает маркеры списка */
+      gap: 20px; /* Расстояние между пунктами меню */
+      padding: 0 10px; /* Внутренние отступы слева/справа */
+    }
+
+    /* Стили для ссылок в навигации */
+    nav a {
+      color: #fff; /* Белый цвет текста */
+      text-decoration: none; /* Убирает подчеркивание */
+      font-weight: bold; /* Жирное начертание */
+      font-size: 16px; /* Размер шрифта */
+      transition: all 0.3s; /* Плавные анимации изменений */
+      padding: 8px 15px; /* Внутренние отступы */
+      border-radius: 4px; /* Скругление углов */
+    }
+
+    /* Стили для ссылок при наведении */
+    nav a:hover {
+      background: #FF0D00; /* Темно-красный фон */
+      color: #fff; /* Белый цвет текста */
+    }
+
+    /* Стили для активной ссылки */
+    nav a.active {
+      background: #FF0D00; /* Темно-красный фон */
+      color: #fff; /* Белый цвет текста */
+    }
+    
+    /* Стили для секции контактов */
+    .map-info {
+      padding: 60px 0 30px; /* Отступы сверху и снизу */
+    }
+    
+    /* Стили для заголовка контактов */
+    .map-info-title {
+      text-align: center; /* Выравнивание по центру */
+      color: #FF0D00; /* Цвет заголовка */
+      margin-bottom: 40px; /* Отступ снизу */
+      font-size: 36px; /* Размер шрифта */
+    }
+    
+    /* Сетка для контактных элементов */
+    .map-info-content {
+      display: grid; /* Использование CSS Grid */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Адаптивные колонки */
+      gap: 30px; /* Расстояние между элементами */
+      margin-bottom: 40px; /* Отступ снизу */
+    }
+    
+    /* Стили для карточек контактов */
+    .map-info-item {
+      background: rgba(60, 60, 60, 0.7); /* Полупрозрачный фон */
+      padding: 25px; /* Внутренние отступы */
+      border: 2px solid #333; /* Граница */
+      border-radius: 8px; /* Скругление углов */
+      transition: all 0.4s ease; /* Плавная анимация */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Тень */
+      transition: transform 0.3s ease; /* Плавная анимация */
+    }
+    
+    /* Эффект при наведении на карточку */
+    .map-info-item:hover {
+      transform: translateY(-10px); /* Смещение вверх */
+      border-color: #FF0D00; /* Изменение цвета границы */
+      box-shadow: 0 15px 35px rgba(112, 5, 0, 0.3); /* Усиление тени */
+    }
+    
+    /* Стили для заголовков внутри карточек */
+    .map-info-item h3 {
+      color: #FF0D00; /* Цвет заголовка */
+      margin-bottom: 15px; /* Отступ снизу */
+      font-size: 22px; /* Размер шрифта */
+    }
+    
+    
+    /* Стили для текста внутри карточек */
+    .map-info-item p {
+      margin-bottom: 10px; /* Отступ снизу */
+      font-size: 18px; /* Размер шрифта */
+    }
+
+    /* Центрированный блок для VK */
+    .vk-center-container {
+      display: flex; /* Flex-раскладка */
+      flex-direction: column; /* Вертикальное расположение */
+      align-items: center; /* Центрирование по горизонтали */
+      max-width: 500px; /* Максимальная ширина */
+      margin: 0 auto; /* Центрирование */
+      padding: 20px; /* Внутренние отступы */
+      text-align: center; /* Выравнивание текста по центру */
+    }
+    
+    /* Стиль для блока VK на всю ширину */
+    .map-info-item.vk-full-width {
+      grid-column: 1 / -1; /* Занимает все колонки */
+      display: flex; /* Flex-раскладка */
+      justify-content: center; /* Центрирование по горизонтали */
+    }
+
+    /* Стили для кнопки VK */
+    .vk-button {
+      display: inline-block; /* Блочно-строчный элемент */
+      background: linear-gradient(135deg, #4a76a8, #3a5f8d); /* Градиентный фон */
+      color: white; /* Белый текст */
+      text-decoration: none; /* Убирает подчеркивание */
+      padding: 14px 28px; /* Внутренние отступы */
+      border-radius: 50px; /* Скругление углов */
+      font-weight: bold; /* Жирное начертание */
+      transition: all 0.3s ease; /* Плавные анимации */
+      box-shadow: 0 4px 15px rgba(74, 118, 168, 0.3); /* Тень */
+      margin-top: 20px; /* Отступ сверху */
+      overflow: hidden; /* Скрытие выходящего за границы контента */
+      position: relative; /* Относительное позиционирование */
+      border: 2px solid rgba(255, 255, 255, 0.2); /* Полупрозрачная рамка */
+      width: 100%; /* Ширина 100% */
+      text-align: center; /* Выравнивание текста по центру */
+    }
+    
+    /* Эффекты при наведении на кнопку */
+    .vk-button:hover {
+      transform: translateY(-3px); /* Смещение вверх */
+      box-shadow: 0 8px 20px rgba(74, 118, 168, 0.5); /* Увеличенная тень */
+      background: linear-gradient(135deg, #5b8bc5, #4a76a8); /* Измененный градиент */
+    }
+    
+    /* Эффекты при нажатии кнопки */
+    .vk-button:active {
+      transform: translateY(1px); /* Смещение вниз */
+      box-shadow: 0 2px 8px rgba(74, 118, 168, 0.3); /* Уменьшенная тень */
+    }
+    
+    /* Контейнер содержимого кнопки */
+    .vk-button-content {
+      display: flex; /* Flex-раскладка */
+      align-items: center; /* Вертикальное выравнивание */
+      justify-content: center; /* Горизонтальное выравнивание */
+      gap: 12px; /* Расстояние между элементами */
+      position: relative; /* Относительное позиционирование */
+      z-index: 2; /* Приоритет слоя */
+    }
+    
+    /* Стили для иконки VK */
+    .vk-button-icon {
+      height: 26px; /* Высота иконки */
+      transition: transform 0.3s ease; /* Плавная анимация */
+    }
+    
+    /* Анимация иконки при наведении */
+    .vk-button:hover .vk-button-icon {
+      transform: rotate(10deg); /* Поворот иконки */
+    }
+    
+    /* Стили для текста кнопки */
+    .vk-button span {
+      font-size: 18px; /* Размер шрифта */
+      letter-spacing: 0.5px; /* Расстояние между буквами */
+    }
+    
+    /* Псевдоэлемент для анимации волны */
+    .vk-button::after {
+      content: ''; /* Пустое содержимое */
+      position: absolute; /* Абсолютное позиционирование */
+      top: 50%; /* Позиция сверху 50% */
+      left: 50%; /* Позиция слева 50% */
+      width: 5px; /* Ширина */
+      height: 5px; /* Высота */
+      background: rgba(255, 255, 255, 0.4); /* Полупрозрачный фон */
+      opacity: 0; /* Начальная прозрачность */
+      border-radius: 100%; /* Круглая форма */
+      transform: scale(1, 1) translate(-50%); /* Преобразование */
+      transform-origin: 0 0; /* Точка преобразования */
+    }
+    
+    /* Анимация волны при наведении */
+    .vk-button:hover::after {
+      animation: ripple 1s ease-out; /* Анимация ripple */
+    }
+    
+    /* Ключевые кадры анимации волны */
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0); /* Начальный масштаб */
+        opacity: 0.8; /* Начальная прозрачность */
+      }
+      100% {
+        transform: scale(40, 40); /* Конечный масштаб */
+        opacity: 0; /* Конечная прозрачность */
+      }
+    }
+
+    /* Стили для подвала сайта */
+    footer {
+      background-color: #595959; /* Цвет фона */
+      padding: 5px 0; /* Внутренние отступы */
+      border-top: 3px solid #000; /* Верхняя граница */
+    }
+
+    /* Контейнер для элементов подвала */
+    .footer-container {
+      display: flex; /* Flex-раскладка */
+      justify-content: space-between; /* Распределение пространства между элементами */
+      align-items: center; /* Вертикальное выравнивание */
+      flex-wrap: wrap; /* Разрешение переноса элементов */
+    }
+
+    /* Стили для элементов подвала */
+    .footer-item {
+      color: #ddd; /* Цвет текста */
+      font-size: 16px; /* Размер шрифта */
+      white-space: nowrap; /* Запрет переноса текста */
+    }
+
+    /* Стили для копирайта */
+    .copyright {
+      color: #ccc; /* Цвет текста */
+      font-size: 14px; /* Размер шрифта */
+    }
+
+    /* Стили для ссылки на VK */
+    .vk-link {
+      display: inline-block; /* Блочно-строчный элемент */
+      cursor: pointer; /* Указатель курсора */
+      transition: all 0.3s ease; /* Плавные анимации */
+    }
+    
+    /* Стили для логотипа VK в подвале */
+    .footer-logo {
+      height: 35px; /* Высота логотипа */
+      opacity: 0.8; /* Полупрозрачность */
+      transition: all 0.3s ease; /* Плавные анимации */
+    }
+    
+    /* Эффекты при наведении на логотип VK */
+    .vk-link:hover .footer-logo {
+      opacity: 1; /* Полная видимость */
+      transform: scale(1.2); /* Увеличение размера */
+    }
+    
+    /* Эффекты при клике на логотип VK */
+    .vk-link:active .footer-logo {
+      transform: scale(0.9); /* Уменьшение размера */
+    }
+
+    /* Медиа-запрос для адаптации под мобильные устройства */
+    @media (max-width: 768px) {
+      /* Адаптация шапки */
+      .header-inner {
+        flex-direction: column; /* Вертикальное расположение элементов */
+        align-items: center; /* Центрирование по горизонтали */
+        text-align: center; /* Выравнивание текста по центру */
+      }
+
+      .header-contact {
+        text-align: center; /* Выравнивание текста по центру */
+        margin-top: 8px; /* Отступ сверху */
+      }
+
+      .header-title {
+        margin-top: 8px; /* Отступ сверху */
+        font-size: 20px; /* Уменьшение размера шрифта */
+      }
+      
+      /* Адаптация навигации */
+      nav {
+        margin-top: 60px; /* Уменьшение отступа от шапки */
+        top: 60px; /* Позиция от верха */
+      }
+      
+      nav ul {
+        gap: 10px; /* Уменьшение расстояния между пунктами */
+      }
+      
+      nav a {
+        font-size: 14px; /* Уменьшение размера шрифта */
+        padding: 6px 10px; /* Уменьшение отступов */
+      }
+      
+      /* Адаптация подвала */
+      .footer-container {
+        flex-direction: column; /* Вертикальное расположение элементов */
+        gap: 15px; /* Расстояние между элементами */
+        text-align: center; /* Выравнивание текста по центру */
+      }
+      
+      /* Адаптация заголовка контактов */
+      .map-info-title {
+        font-size: 28px; /* Уменьшение размера шрифта */
+      }
+      
+      /* Адаптация кнопки VK */
+      .vk-button {
+        padding: 12px 20px; /* Уменьшение отступов */
+      }
+      
+      .vk-button span {
+        font-size: 16px; /* Уменьшение размера шрифта */
+      }
+      
+      .vk-button-icon {
+        height: 22px; /* Уменьшение высоты иконки */
+      }
+      
+      /* Адаптация контейнера VK */
+      .vk-center-container {
+        max-width: 100%; /* Ширина 100% */
+        padding: 15px; /* Уменьшение отступов */
+      }
+    }
+  </style>
+</head>
+
+<body> 
+<!-- Тело документа (видимая часть страницы) -->
+
+  <!-- Шапка сайта -->
+  <header>
+    <div class="container"> 
+    <!-- Контейнер для центрирования контента -->
+      <div class="header-inner"> 
+      <!-- Внутренний блок шапки -->
+        <img src="лого3.png" alt="Логотип" class="logo" /> 
+        <!-- Изображение логотипа -->
+        <div class="header-title">Тренажёрный зал Бонус</div> 
+        <!-- Название зала -->
+        <div class="header-contact"> 
+        <!-- Блок контактной информации -->
+          <div>8(912)00-177-12</div> <!-- Номер телефона -->
+          <div>Сыктывкар, Ленина, 108</div> <!-- Адрес -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Навигационное меню -->
+  <nav>
+    <div class="container">
+      <ul> 
+      <!-- Список пунктов меню -->
+        <li><a href="сайт курсач.html">О клубе</a></li> 
+        <!-- Пункт меню -->
+        <li><a href="наша команда.html">Наша команда</a></li> 
+        <!-- Пункт меню -->
+        <li><a href="абонементы.html">Абонементы</a></li> 
+        <!-- Пункт меню -->
+        <li><a href="контакты.html" class="active">Контакты</a></li> 
+        <!-- Активный пункт меню -->
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Секция контактной информации -->
+  <div class="container">
+    <div class="map-info">
+      <h2 class="map-info-title">Наши контакты</h2> 
+      <!-- Заголовок секции -->
+      <div class="map-info-content"> 
+      <!-- Контейнер для контактных карточек -->
+        <!-- Карточка телефона -->
+        <div class="map-info-item">
+          <h3>Телефон</h3> <!-- Заголовок карточки -->
+          <p>+7 (912) 00-177-12</p> <!-- Текст карточки -->
+        </div>
+        
+        <!-- Карточка адреса -->
+        <div class="map-info-item">
+          <h3>Адрес</h3> <!-- Заголовок карточки -->
+          <p>улица Ленина, 108, Сыктывкар</p> <!-- Текст карточки -->
+        </div>
+        
+        <!-- Карточка графика работы -->
+        <div class="map-info-item">
+          <h3>График работы</h3> <!-- Заголовок карточки -->
+          <p>Пн-Пт: 9:00-22:00</p> <!-- Текст карточки -->
+          <p>Сб: 9:00-20:00</p> <!-- Текст карточки -->
+          <p>Вс: 10:00-18:00</p> <!-- Текст карточки -->
+        </div>
+        
+        <!-- Блок VK -->
+        <div class="map-info-item vk-full-width"> 
+        <!-- Блок на всю ширину -->
+          <div class="vk-center-container"> 
+          <!-- Центрированный контейнер -->
+            <a href="https://vk.com/bonus_fitnes?from=groups" target="_blank" class="vk-button">
+              <!-- Кнопка VK -->
+              <div class="vk-button-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/VK.com-logo.svg/2048px-VK.com-logo.svg.png" 
+                     alt="VK" class="vk-button-icon" /> 
+                <!-- Иконка VK -->
+                <span>Мы ВКонтакте</span> 
+                <!-- Текст кнопки -->
+              </div>
+            </a>
+            <p style="margin-top: 15px; font-size: 16px;">Подпишитесь на новости и акции</p> 
+            <!-- Призыв к действию -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Секция с картой -->
+  <div class="container" style="padding-bottom: 40px;">
+    <!-- Встроенная карта Яндекса -->
+    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A35a719f6a918c6766adeb36addcd8f4c9a8ef04de946dd0b32442b872d2496a6&amp;width=100%&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
+  </div>
+
+  <!-- Подвал сайта -->
+  <footer>
+    <div class="container">
+      <div class="footer-container"> 
+      <!-- Контейнер для элементов подвала -->
+        <!-- Элемент с адресом -->
+        <div class="footer-item">
+          <span>Сыктывкар, Ленина, 108</span>
+        </div>
+        
+        <!-- Элемент с телефоном -->
+        <div class="footer-item">
+          <span>8(912)00-177-12</span>
+        </div>
+        
+        <!-- Элемент с копирайтом -->
+        <div class="footer-item">
+          <span class="copyright">Copyright © 2025</span>
+        </div>
+        
+        <!-- Элемент со ссылкой на VK -->
+        <div class="footer-item">
+            <a href="https://vk.com/bonus_fitnes?from=groups" target="_blank" class="vk-link">
+                <img src="вк.png" alt="VK" class="footer-logo" /> 
+                <!-- Иконка VK -->
+              </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
